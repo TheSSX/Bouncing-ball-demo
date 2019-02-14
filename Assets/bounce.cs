@@ -8,8 +8,7 @@ public class bounce : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        //rigidbody.AddForce(new Vector2(1, 1) * 1000f);
+
     }
 	
 	// Update is called once per frame

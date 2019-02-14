@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class fire : MonoBehaviour
 {
-    public float elapsed = 0;
+    public float elapsed = 1;
 
     // Use this for initialization
     void Start()
@@ -18,19 +18,19 @@ public class fire : MonoBehaviour
         if ((Input.GetKey(KeyCode.Space)))
         {
             elapsed += Time.deltaTime;
-            if (elapsed > 1.5f)
+            if (elapsed > 2.5f)
             {
-                elapsed = 1.5f;
+                elapsed = 2.5f;
             }
         }
         else
         {
-            if (elapsed != 0)
+            if (elapsed != 1)
             {
                 bounceit();
             }
 
-            elapsed = 0;
+            elapsed = 1;
         }
     }
 
@@ -38,9 +38,9 @@ public class fire : MonoBehaviour
     {
         Debug.Log("elapsed is " + elapsed);
         Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(new Vector2(0.5f, 1) * 1000f * (elapsed*elapsed));
+        rigidbody.AddForce(new Vector2(3, 1) * 10f * (elapsed*elapsed), ForceMode2D.Impulse);
         GameObject background = GameObject.Find("background");
         scroll scroll = background.GetComponent<scroll>();
-        scroll.hasFired(elapsed*elapsed*elapsed);
+        scroll.hasFired(elapsed*elapsed*elapsed*elapsed*elapsed*elapsed);
     }
 }
