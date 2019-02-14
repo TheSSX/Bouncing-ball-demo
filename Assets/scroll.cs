@@ -5,11 +5,11 @@ using UnityEngine;
 public class scroll : MonoBehaviour {
 
     public float speed;
-    Vector2 offset;
+    float offset;
 
     // Use this for initialization
     void Start () {
-        speed = 5f;
+        speed = 0f;
 	}
 	
 	// Update is called once per frame
@@ -18,16 +18,22 @@ public class scroll : MonoBehaviour {
 
         if (speed >= 0)
         {
-            offset = new Vector2(Time.time * speed, 0);
+            offset += (Time.deltaTime * speed) / 10;
 
             Renderer renderer = GetComponent<Renderer>();
-            renderer.material.mainTextureOffset = offset;
+            renderer.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
         }
         else
         {
             speed = 0;
+            offset += (Time.deltaTime * speed) / 10;
             Renderer renderer = GetComponent<Renderer>();
-            renderer.material.SetTextureOffset("new", renderer.material.GetTextureOffset("background"));
+            renderer.material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
         }
-	}
+    }
+
+    public void hasFired(float x)
+    {
+        speed = x;
+    }
 }
